@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            margin-top: 50px;
+            margin-left: 50px;
+            width: 100px;
+            height: 50px;
+            background-color: green;
+            border-radius: 45px;
+        }
+        
+        p {
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        
+        #title {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: blue;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="generateButton"><p>generate</p></button>
+    <button id="deleteButton"><p>delete</p></button>
+    <h1 id="title"></h1>
+    <script src="clicker.js"></script>
+    <script id="ja">
+        const generateButton = document.querySelector('#generateButton');
+        const deleteButton = document.querySelector('#deleteButton');
+
+        generateButton.addEventListener('click', () => {
+            document.querySelector('#title').textContent = 'Button Clicked!';
+            fetch('/generate').then(response => response.text()).then(data => {
+                console.log(data);
+            });
+
+        });
+
+        deleteButton.addEventListener('click', () => {
+            document.querySelector('#title').textContent = 'Delete button clicked!';
+            fetch('/delete').then(response => response.text()).then(data => {
+                console.log(data);
+            });
+        });
+    </script>
+</body>
+
+</html>
